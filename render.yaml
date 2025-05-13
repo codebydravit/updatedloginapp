@@ -1,0 +1,24 @@
+# render.yaml
+services:
+  - type: web
+    name: login-backend
+    env: docker
+    region: oregon
+    plan: free
+    dockerfilePath: backend/Dockerfile
+    buildCommand: ""
+    startCommand: "uvicorn main:app --host 0.0.0.0 --port 8000"
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 8000
+
+  - type: web
+    name: login-frontend
+    env: docker
+    region: oregon
+    plan: free
+    dockerfilePath: frontend/Dockerfile
+    buildCommand: ""
+    startCommand: ""  # Uses NGINX default
+    autoDeploy: true
